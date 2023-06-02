@@ -1,0 +1,66 @@
+plugins {
+    id 'com.android.application'
+    id 'org.jetbrains.kotlin.android'
+}
+
+android {
+    namespace 'com.lush.composedemo'
+    compileSdk 33
+
+    defaultConfig {
+        applicationId "com.lush.composedemo"
+        minSdk 24
+        targetSdk 33
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        vectorDrawables {
+            useSupportLibrary true
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+    buildFeatures {
+        viewBinding true
+        compose true
+    }
+    composeOptions {
+        kotlinCompilerExtensionVersion '1.4.0'
+    }
+    packagingOptions {
+        resources {
+            excludes += '/META-INF/{AL2.0,LGPL2.1}'
+        }
+    }
+}
+
+dependencies {
+
+    def coreKtxVersion = '1.10.1'
+    def lifecycleRuntimeVersion = '2.5.1'
+    def activityComposeVersion = '1.7.2'
+    def composeUiVersion = '1.4.3'
+
+    implementation "androidx.core:core-ktx:$coreKtxVersion"
+    implementation "androidx.lifecycle:lifecycle-runtime-ktx:$lifecycleRuntimeVersion"
+    implementation "androidx.activity:activity-compose:$activityComposeVersion"
+    implementation "androidx.compose.ui:ui:$composeUiVersion"
+    implementation "androidx.compose.ui:ui-tooling-preview:$composeUiVersion"
+    implementation "androidx.compose.material:material:$composeUiVersion"
+
+    debugImplementation "androidx.compose.ui:ui-tooling:$composeUiVersion"
+    debugImplementation "androidx.compose.ui:ui-test-manifest:$composeUiVersion"
+}
